@@ -1,0 +1,92 @@
+# 2. Во втором массиве сохранить индексы четных элементов первого массива.
+# Например, если дан массив со значениями 8, 3, 15, 6, 4, 2, то во второй массив надо заполнить значениями 1, 4, 5, 6 (или 0, 3, 4, 5 - если индексация начинается с нуля), т.к. именно в этих позициях первого массива стоят четные числа.
+
+import random
+import cProfile
+
+def analiz(n):
+    array = [random.randint(n*-10, n*10) for _ in range(n)]
+    array_2 = []
+    for idx, val in enumerate(array):
+        if val % 2 == 0:
+            array_2.append(idx)
+    return array_2
+
+cProfile.run('analiz(10000)')
+
+
+
+#100 loops, best of 5: 18.6 usec per loop =10
+#100 loops, best of 5: 181 usec per loop  =100
+#100 loops, best of 5: 2 msec per loop    =1000
+#100 loops, best of 5: 20.6 msec per loop =10000
+
+# =10
+# C:\Users\Pavel\PycharmProjects\untitled3\venv\Scripts\python.exe C:/Users/Pavel/PycharmProjects/untitled3/venv/Lesson_4/Analiz.py
+#          58 function calls in 0.000 seconds
+#
+#    Ordered by: standard name
+#
+#    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+#         1    0.000    0.000    0.000    0.000 <string>:1(<module>)
+#         1    0.000    0.000    0.000    0.000 Analiz.py:8(analiz)
+#         1    0.000    0.000    0.000    0.000 Analiz.py:9(<listcomp>)
+#        10    0.000    0.000    0.000    0.000 random.py:174(randrange)
+#        10    0.000    0.000    0.000    0.000 random.py:218(randint)
+#        10    0.000    0.000    0.000    0.000 random.py:224(_randbelow)
+#         1    0.000    0.000    0.000    0.000 {built-in method builtins.exec}
+#         2    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+#        10    0.000    0.000    0.000    0.000 {method 'bit_length' of 'int' objects}
+#         1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+#        11    0.000    0.000    0.000    0.000 {method 'getrandbits' of '_random.Random' objects}
+#
+#
+#
+# Process finished with exit code 0
+
+
+# =1000
+# C:\Users\Pavel\PycharmProjects\untitled3\venv\Scripts\python.exe C:/Users/Pavel/PycharmProjects/untitled3/venv/Lesson_4/Analiz.py
+#          6114 function calls in 0.003 seconds
+#
+#    Ordered by: standard name
+#
+#    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+#         1    0.000    0.000    0.003    0.003 <string>:1(<module>)
+#         1    0.000    0.000    0.003    0.003 Analiz.py:8(analiz)
+#         1    0.000    0.000    0.003    0.003 Analiz.py:9(<listcomp>)
+#      1000    0.001    0.000    0.002    0.000 random.py:174(randrange)
+#      1000    0.000    0.000    0.002    0.000 random.py:218(randint)
+#      1000    0.001    0.000    0.001    0.000 random.py:224(_randbelow)
+#         1    0.000    0.000    0.003    0.003 {built-in method builtins.exec}
+#       501    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+#      1000    0.000    0.000    0.000    0.000 {method 'bit_length' of 'int' objects}
+#         1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+#      1608    0.000    0.000    0.000    0.000 {method 'getrandbits' of '_random.Random' objects}
+#
+#
+#
+# Process finished with exit code 0
+
+# =10000
+# C:\Users\Pavel\PycharmProjects\untitled3\venv\Scripts\python.exe C:/Users/Pavel/PycharmProjects/untitled3/venv/Lesson_4/Analiz.py
+#          58088 function calls in 0.031 seconds
+#
+#    Ordered by: standard name
+#
+#    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+#         1    0.000    0.000    0.031    0.031 <string>:1(<module>)
+#         1    0.002    0.002    0.031    0.031 Analiz.py:8(analiz)
+#         1    0.005    0.005    0.028    0.028 Analiz.py:9(<listcomp>)
+#     10000    0.009    0.000    0.019    0.000 random.py:174(randrange)
+#     10000    0.004    0.000    0.024    0.000 random.py:218(randint)
+#     10000    0.007    0.000    0.010    0.000 random.py:224(_randbelow)
+#         1    0.000    0.000    0.031    0.031 {built-in method builtins.exec}
+#      4954    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+#     10000    0.001    0.000    0.001    0.000 {method 'bit_length' of 'int' objects}
+#         1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+#     13129    0.002    0.000    0.002    0.000 {method 'getrandbits' of '_random.Random' objects}
+#
+#
+#
+# Process finished with exit code 0
